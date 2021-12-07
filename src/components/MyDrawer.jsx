@@ -14,13 +14,15 @@ import {DrawerContext} from "../context";
 import MenuIcon from "@mui/icons-material/Menu";
 import {IconButton} from "@material-ui/core";
 import {useStyles} from "../hooks/useStyle";
+import {useHistory} from "react-router-dom";
 
 const MyDrawer = () => {
+    const router = useHistory();
+
     const classes = useStyles();
     const {drawerState, setDrawerState} = useContext(DrawerContext);
 
     const toggleDrawer = (open) => (event) => {
-        // event.preventDefault();
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
@@ -35,8 +37,8 @@ const MyDrawer = () => {
             onKeyDown={toggleDrawer(false)}
         >
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
+                {['Home', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                    <ListItem button key={text} onClick={() => router.push('/')}>
                         <ListItemIcon>
                             {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                         </ListItemIcon>

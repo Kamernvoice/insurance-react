@@ -4,10 +4,7 @@ import {useEffect, useState} from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {AuthContext, DrawerContext} from "./context";
 import AppRouter from "./router/AppRouter";
-import MyDrawer from "./components/MyDrawer";
-import MyAppBar from "./components/MyAppBar";
-import MyAccountMenu from "./components/MyAccountMenu";
-import Main from "./pages/Main";
+import MyBackdrop from "./components/MyBackdrop";
 
 function App() {
     const [isAuth, setIsAuth] = useState(false);
@@ -27,15 +24,11 @@ function App() {
                 setIsAuth,
                 isLoading
             }}>
-                <AppRouter/>
-                {/*<BrowserRouter>*/}
-
-                {/*    <Switch>*/}
-                {/*        <Route path="/" component={Main}/>*/}
-                {/*    </Switch>*/}
-                {/*</BrowserRouter>*/}
+                <BrowserRouter>
+                    <AppRouter/>
+                </BrowserRouter>
+                {isLoading && <MyBackdrop/>}
             </AuthContext.Provider>
-            <MyAccountMenu/>
         </div>
 
     )
